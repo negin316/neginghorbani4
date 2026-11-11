@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>قطار ایران‌گرد کوچولو</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500;800&family=Lalezar&display=swap" rel="stylesheet">
+<style>
+:root{--s1:#5ec8ff;--s2:#e3f7ff;--ink:#3b2a6b;--card:#fffdf4;--line:#ffd98a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--s1:#26337a;--s2:#5b6fd1;--ink:#f3eeff;--card:#2e2a5c;--line:#6b5fc7;color-scheme:dark}}
+:root[data-theme="dark"]{--s1:#26337a;--s2:#5b6fd1;--ink:#f3eeff;--card:#2e2a5c;--line:#6b5fc7;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;font-family:Vazirmatn,Tahoma,sans-serif;color:var(--ink);background:linear-gradient(var(--s1),var(--s2)) fixed;-webkit-tap-highlight-color:transparent}
+#app{max-width:720px;margin:auto;padding:12px}
+.screen{display:none}.screen.on{display:block}
+.btn{font:inherit;font-weight:800;font-size:16px;border:0;border-radius:22px;padding:12px 14px;color:#fff;background:linear-gradient(#ff9a5a,#ff6b2c);box-shadow:0 7px 0 #c24a14,0 10px 14px #0003,inset 0 4px 0 #fff6;cursor:pointer;transition:.1s}
+.btn:active{transform:translateY(5px);box-shadow:0 2px 0 #c24a14,inset 0 3px 0 #fff6}
+.btn:disabled{cursor:default}
+.card{background:var(--card);border-radius:28px;padding:16px;margin-top:14px;box-shadow:0 8px 0 var(--line),0 14px 20px #0003,inset 0 4px 0 #fff8}
+.title{margin:6px 0;text-align:center;font-family:Lalezar,Vazirmatn,Tahoma,sans-serif;font-weight:400;font-size:clamp(38px,12vw,66px);line-height:1.3;filter:drop-shadow(4px 0 0 #fff) drop-shadow(-4px 0 0 #fff) drop-shadow(0 4px 0 #fff) drop-shadow(0 -4px 0 #fff) drop-shadow(0 7px 0 #1d1b4b)}.title span{background:linear-gradient(#239f40 0 40%,#fff 40% 60%,#da0000 60%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2.5px #1d1b4b;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 4px}
+.big{font-size:80px;text-align:center;animation:bob2 1s ease-in-out infinite alternate}
+@keyframes bob2{to{transform:translateY(-10px) rotate(-4deg)}}
+.row{display:flex;justify-content:space-around;font-size:34px}.row span{animation:bob2 1.4s ease-in-out infinite alternate}
+.ticket{position:relative;text-align:center;background:#fff6c9;color:#3b2a6b;border-radius:26px;padding:20px 16px;margin-top:10px;box-shadow:0 8px 0 #f0b93b,0 14px 20px #0003,inset 0 4px 0 #fff}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--s2)}
+.ticket::before{right:-13px}.ticket::after{left:-13px}
+.ticket input{font:inherit;font-weight:800;width:100%;margin:8px 0;padding:12px;border:4px dashed #ff9a5a;border-radius:18px;text-align:center;font-size:19px;background:#fff;color:#3b2a6b}
+.md{display:flex;gap:10px;margin:10px 0}.md .btn{flex:1;background:linear-gradient(#b9b5d6,#8f8aae);box-shadow:0 6px 0 #6c678f}
+.md .sl,.opt.sl{background:linear-gradient(#ffd23a,#ffb000);box-shadow:0 6px 0 #c88400,0 0 0 4px #fff;color:#5a2a00}
+.hud{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font-weight:800;font-size:14px;box-shadow:0 4px 0 var(--line)}
+#mu{border:0;font-size:16px;cursor:pointer}
+#scene{position:relative;height:178px;margin-top:10px;border-radius:28px;overflow:hidden;background:linear-gradient(#8fdcff,#f0fcff);box-shadow:0 8px 0 #2a8fc9,0 14px 20px #0003}
+.sun{position:absolute;top:14px;left:18px;width:44px;height:44px;border-radius:50%;background:radial-gradient(#fff6a8,#ffc931);box-shadow:0 0 0 8px #ffe26b66}
+.cl{position:absolute;font-size:34px;animation:fl 6s ease-in-out infinite alternate}
+@keyframes fl{to{transform:translateX(24px)}}
+.hill{position:absolute;left:0;right:0;bottom:46px;height:80px;background:radial-gradient(circle at 50% 100%,#5fd47c 0 58%,#0000 59%) 0 0/180px 80px repeat-x;animation:sc 3s linear infinite paused}
+.hill.b{height:60px;bottom:42px;background:radial-gradient(circle at 50% 100%,#38b865 0 58%,#0000 59%) 60px 0/130px 60px repeat-x;animation-name:scb;animation-duration:1.6s}
+@keyframes sc{to{background-position-x:-360px}}@keyframes scb{to{background-position-x:-330px}}
+.ground{position:absolute;left:0;right:0;bottom:0;height:46px;background:repeating-linear-gradient(90deg,#5a3a20 0 8px,#0000 8px 28px),linear-gradient(#b9814f,#8a5a33);animation:sg .8s linear infinite paused}
+@keyframes sg{to{background-position-x:-28px,0}}
+.rail{position:absolute;left:0;right:0;bottom:34px;height:6px;background:#666;box-shadow:0 3px 0 #333}
+.go .hill,.go .ground{animation-play-state:running}
+#sign{position:absolute;right:12px;top:10px;background:#fff;color:#3b2a6b;border-radius:14px;padding:4px 10px;font-weight:800;font-size:14px;box-shadow:0 4px 0 #0003}
+.train{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);direction:ltr;display:flex;align-items:flex-end;gap:5px}
+.train.go{animation:bob .25s infinite alternate}
+@keyframes bob{to{transform:translateX(-50%) translateY(-3px)}}
+.wg,.eng{position:relative;border-radius:12px;box-shadow:inset 0 4px 0 #fff6,inset 0 -5px 0 #0003,0 4px 0 #0003}
+.wg{width:54px;height:44px;background:linear-gradient(var(--c),#0003)}
+.wg::before{content:"";position:absolute;top:9px;left:8px;right:8px;height:14px;border-radius:7px;background:repeating-linear-gradient(90deg,#e6f9ff 0 12px,#0000 12px 17px)}
+.eng{width:92px;height:62px;background:linear-gradient(#ff6a6a,#d92f4a);border-radius:14px 28px 10px 10px}
+.eng::before{content:"";position:absolute;top:12px;left:10px;width:26px;height:22px;border-radius:8px;background:#e6f9ff}
+.eng::after{content:"😃";position:absolute;right:8px;top:12px;font-size:28px}
+.eng em{position:absolute;top:-16px;right:22px;width:20px;height:20px;background:#3b2a6b;border-radius:6px 6px 3px 3px}
+.smk{position:absolute;top:-32px;right:20px;width:22px;height:22px;border-radius:50%;background:#fff;opacity:0}
+.go .smk{animation:pf .7s infinite}@keyframes pf{from{opacity:.9;transform:scale(.5)}to{opacity:0;transform:translate(-34px,-30px) scale(1.5)}}
+.train s{position:absolute;bottom:-9px;width:19px;height:19px;border-radius:50%;border:3px solid #3b2a6b;background:conic-gradient(#ffd23a 0 25%,#fff 0 50%,#ffd23a 0 75%,#fff 0);animation:spin .4s linear infinite paused}
+.go s{animation-play-state:running}@keyframes spin{to{transform:rotate(360deg)}}
+.train s:nth-of-type(1){left:6px}.train s:nth-of-type(2){right:6px}
+#qt{font-size:20px;font-weight:800;margin:4px 0 14px;line-height:1.7}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{background:linear-gradient(#5aa8ff,#2f7bff);box-shadow:0 7px 0 #1d52b8,0 10px 14px #0003,inset 0 4px 0 #fff6}
+.opt.ok{background:linear-gradient(#5be38c,#22b459);box-shadow:0 7px 0 #138040,inset 0 4px 0 #fff6}
+.opt.no{background:linear-gradient(#ff8a8a,#e03a3a);box-shadow:0 7px 0 #9c2020,inset 0 4px 0 #fff6;opacity:.7;animation:sh .3s}
+@keyframes sh{25%{transform:translateX(6px)}75%{transform:translateX(-6px)}}
+#hint{min-height:48px;margin-top:14px;line-height:1.8}
+#map{width:100%;display:block;margin-top:8px}#opts.rv .opt{touch-action:none;user-select:none;-webkit-user-select:none}#grid{display:grid;direction:ltr;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:10px}
+.t{aspect-ratio:1;border-radius:12px;background:#d9d6ee;color:#8f8aae;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:clamp(14px,4.5vw,24px);line-height:1.1;box-shadow:inset 0 -4px 0 #0002;overflow:hidden}
+.t small{font-size:8px;font-weight:800;white-space:nowrap}
+.t.b{background:hsl(var(--h) 85% 74%);color:#3b2a6b;box-shadow:0 4px 0 hsl(var(--h) 60% 45%),inset 0 3px 0 #fff7;animation:pop .5s}
+@keyframes pop{0%{transform:scale(.2) rotate(-20deg)}70%{transform:scale(1.25)}100%{transform:none}}
+#pop{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:20px;z-index:9;text-align:center}
+#pop.on{display:flex}#pop .card{max-width:340px;animation:pop .4s}
+.wish{margin:12px 0;padding:14px;border-radius:22px;background:linear-gradient(135deg,#fff1b8,#ffd6e8);color:#5a2a00;font-weight:800;line-height:1.9;border:3px dashed #ff7a2c;box-shadow:0 5px 0 #e0a030}.cert{text-align:center}.cert .big{font-size:64px}
+.cr{display:flex;align-items:center;justify-content:center;gap:14px;margin:20px auto 8px;max-width:380px;padding:12px 18px;border-radius:30px;background:linear-gradient(135deg,#ffe27a,#ffb347);color:#5a2a00;border:4px solid #fff;outline:4px dashed #239f40;outline-offset:3px;box-shadow:0 8px 0 #d9822b,0 14px 20px #0004,inset 0 4px 0 #fff9;text-align:center;font-weight:800}
+.cr b{display:block;font-size:26px;text-shadow:0 2px 0 #fff}.cr small{font-size:14px}
+.cr span{font-size:28px;animation:tw 1.2s infinite alternate}@keyframes tw{to{transform:scale(1.3) rotate(15deg)}}
+</style></head><body><div id="app">
+<div id="s1" class="screen on">
+ <div class="big">🚂</div>
+ <h1 class="title"><span>قطار ایران‌گرد کوچولو</span></h1>
+ <div class="row"><span>🗼</span><span>🌉</span><span>🏔️</span><span>🕌</span><span>🌴</span></div>
+ <div class="ticket"><b style="font-size:19px">🎫 بلیت قطار ایران‌گردی</b>
+  <div class="md"><button class="btn sl" id="m1">👤 تک‌نفره</button><button class="btn" id="m2">👥 دونفره</button></div>
+  نام مسافر کوچولو را روی بلیت بنویس:
+  <input id="in" maxlength="16" placeholder="مثلاً: مسافر باهوش" autocomplete="off">
+  <input id="in2" maxlength="16" placeholder="نام مسافر دوم" autocomplete="off" style="display:none">
+  <button class="btn" id="go" style="margin-top:10px">سوت بزن و حرکت کن! 🚂</button></div>
+ <div id="c1"></div>
+</div>
+<div id="s2" class="screen">
+ <div class="hud"><span class="chip" id="nm"></span><span class="chip" id="co"></span><span class="chip" id="rg"></span><span class="chip" id="ps"></span><button class="chip" id="mu">🔊</button></div>
+ <div id="scene"><div class="sun"></div><span class="cl" style="top:20px;right:30%">☁️</span><span class="cl" style="top:48px;left:34%">☁️</span>
+  <div class="hill"></div><div class="hill b"></div><div class="ground"></div><div class="rail"></div><div id="sign"></div>
+  <div class="train" id="train"><div class="wg" style="--c:#ffd23a"><s></s><s></s></div><div class="wg" style="--c:#5bd88b"><s></s><s></s></div><div class="wg" style="--c:#5aa8ff"><s></s><s></s></div><div class="eng"><em></em><div class="smk"></div><s></s><s></s></div></div></div>
+ <div class="card" id="qc"><div id="qt"></div><div class="opts" id="opts"></div><div id="hint"></div></div>
+ <div class="card" style="padding:10px"><b>🗺️ نقشه‌ی پازلیِ ایران کوچکِ من</b><canvas id="map" width="460" height="424"></canvas></div>
+ <div id="c2"></div>
+</div>
+<div id="pop"><div class="card"><div class="big" id="pe"></div><p id="pm" style="font-weight:800;font-size:19px"></p><button class="btn" id="pb">ادامه‌ی سفر 🚂</button></div></div>
+</div>
+<script>
+const D=`تهران|تهران|🗼|برج میلاد در تهران است و تهران پایتخت ایران است.|52
+البرز|کرج|⛰️|کرج در دامنه‌ی کوه‌های البرز است.|42
+قم|قم|🕌|قم شهر حرم حضرت معصومه (س) است.|43
+قزوین|قزوین|🏰|قزوین روزگاری پایتخت ایران بوده است.|32
+مرکزی|اراک|🏭|اراک شهر صنایع سنگین ایران است.|33
+گیلان|رشت|🌧️|رشت شهر باران و برنج است.|41
+مازندران|ساری|🌲🌳|ساری در میان جنگل و دریای خزر است.|51
+گلستان|گرگان|🐎|پارک ملی گلستان در این استان است.|61
+سمنان|سمنان|🐪|بخشی از کویر ایران در استان سمنان است.|62
+اردبیل|اردبیل|❄️|کوه سبلان و آب‌گرم سرعین در اردبیل است.|31
+آذربایجان شرقی|تبریز|🧶|بازار سرپوشیده‌ی تبریز جهانی است.|21
+آذربایجان غربی|ارومیه|🌊|ارومیه کنار دریاچه‌ی ارومیه است.|11
+زنجان|زنجان|🎁|زنجان به چاقو و ملیله‌کاری معروف است.|22
+کردستان|سنندج|🎶|سنندج شهر کوه‌ها و موسیقی زیباست.|12
+همدان|همدان|🏛️|آرامگاه بوعلی سینا در همدان است.|23
+کرمانشاه|کرمانشاه|🗿|طاق بستان در کرمانشاه است.|13
+ایلام|ایلام|🌳|ایلام شهر جنگل‌های بلوط است.|14
+لرستان|خرم‌آباد|🏯|قلعه‌ی فلک‌الافلاک در خرم‌آباد است.|24
+خوزستان|اهواز|🛶|رود کارون از اهواز می‌گذرد.|25
+چهارمحال و بختیاری|شهرکرد|💧|شهرکرد سرزمین چشمه‌ها و کوه‌های زردکوه است.|34
+کهگیلویه و بویراحمد|یاسوج|🏕️|یاسوج سرزمین طبیعت سرسبز و ایل‌هاست.|44
+فارس|شیراز|📖|شیراز شهر حافظ و سعدی است.|54
+بوشهر|بوشهر|⚓|بوشهر شهر دریا و خلیج فارس است.|35
+هرمزگان|بندرعباس|🚢|بندرعباس بندر بزرگ ایران است.|55
+کرمان|کرمان|🌰|کرمان به پسته معروف است.|64
+اصفهان|اصفهان|🌉|سی‌وسه‌پل و میدان نقش جهان در اصفهان است.|53
+یزد|یزد|🏜️|یزد شهر بادگیرهاست.|63
+سیستان و بلوچستان|زاهدان|🌵|زاهدان در جنوب‌شرق ایران است.|74
+خراسان جنوبی|بیرجند|🌸|بیرجند به زعفران و زرشک معروف است.|73
+خراسان رضوی|مشهد|✨|حرم امام رضا (ع) در مشهد است.|72
+خراسان شمالی|بجنورد|🏔️|بجنورد در شمال‌شرق ایران است.|71`.split('\n').map(l=>l.split('|'));
+const R=['مرکز','شمال','شمال‌غرب','غرب و جنوب‌غرب','جنوب','شرق و کویر'],E=[4,9,14,19,24,30],N=31;
+const $=s=>document.querySelector(s),fa=n=>n.toLocaleString('fa-IR'),rg=k=>E.findIndex(e=>k<=e);
+const sh=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+const CR='<div class="cr"><span>⭐</span><div><small>🎨 طراحی و ساخت بازی</small><b>نگین قربانی</b><small style="display:block;margin-top:2px;font-size:13px;line-height:1.6">سرگروه سواد دیجیتال و شایستگی‌های فناورانه استان خوزستان</small></div><span>🌟</span></div>';
+$('#c1').innerHTML=CR.replace('</small></div>','</small><small style="display:block;margin-top:4px">🇮🇷 برای ایران، برای مدرسه 🏫</small></div>');$('#c2').innerHTML=CR;
+let i=0,t=0,P=[],mode=1,locked=false,wrong=false,on=true,stamps=0,AC,master,mus,nb;
+const cur=()=>P[t%P.length];
+function ac(){if(!AC){AC=new(window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=.5;master.connect(AC.destination);mus=AC.createGain();mus.connect(master);
+nb=AC.createBuffer(1,4410,44100);const d=nb.getChannelData(0);for(let k=0;k<4410;k++)d[k]=Math.random()*2-1;setInterval(music,300)}if(AC.state==='suspended')AC.resume()}
+function tone(f,s,d,type,v,dest){const o=AC.createOscillator(),g=AC.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.0001,s);g.gain.exponentialRampToValueAtTime(v,s+.02);g.gain.exponentialRampToValueAtTime(.0001,s+d);o.connect(g);g.connect(dest||master);o.start(s);o.stop(s+d+.05)}
+const mel=[523,659,784,659,587,698,880,698,659,784,988,784,698,587,659,523];let mi=0;
+function music(){if(!AC)return;const s=AC.currentTime,f=mel[mi%16];tone(f,s,.35,'triangle',.07,mus);if(mi%4==0)tone(f/4,s,.9,'sine',.12,mus);mi++}
+function chuff(){if(!AC)return;const s=AC.currentTime,b=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();b.buffer=nb;f.type='bandpass';f.frequency.value=900;g.gain.setValueAtTime(.4,s);g.gain.exponentialRampToValueAtTime(.001,s+.12);b.connect(f);f.connect(g);g.connect(master);b.start(s);tone(90,s,.08,'square',.12)}
+function whistle(){if(!AC)return;const s=AC.currentTime;[523,659].forEach(f=>{tone(f,s,.5,'triangle',.25);tone(f,s+.55,.35,'triangle',.2)})}
+function ding(){if(!AC)return;const s=AC.currentTime;tone(880,s,.3,'sine',.25);tone(1320,s+.12,.4,'sine',.22)}
+function buzz(){if(!AC)return;tone(140,AC.currentTime,.3,'sawtooth',.15)}
+function fan(){if(!AC)return;const s=AC.currentTime;[523,659,784,1047,784,1047].forEach((f,k)=>tone(f,s+k*.14,.3,'square',.1))}
+function hud(){const m=P.length>1;$('#nm').textContent=m?'🎫 نوبت: '+cur().n:'🎫 '+P[0].n;$('#co').textContent=P.map(p=>(m?p.n+' ':'')+'🪙'+fa(p.c)).join(' • ');
+$('#rg').textContent='🧭 '+R[rg(Math.min(i,N-1))];$('#ps').textContent='🛂 '+fa(stamps)+' از ۶';$('#sign').textContent=i>=N?'🏁 پایان سفر':'🚉 ایستگاه '+fa(i+1)+' از '+fa(N)}
+function travel(cb){const s=$('#scene'),tr=$('#train');s.classList.add('go');tr.classList.add('go');whistle();const iv=setInterval(chuff,190);
+setTimeout(()=>{clearInterval(iv);s.classList.remove('go');tr.classList.remove('go');cb()},2300)}
+function setm(m){mode=m;$('#in2').style.display=m>1?'':'none';$('#m1').classList.toggle('sl',m==1);$('#m2').classList.toggle('sl',m==2)}
+function start(){ac();P=[{n:$('#in').value.trim()||(mode>1?'مسافر اول':'مسافر کوچولو'),c:0}];if(mode>1)P.push({n:$('#in2').value.trim()||'مسافر دوم',c:0});
+$('#s1').classList.remove('on');$('#s2').classList.add('on');
+draw(-1);
+$('#qt').textContent='قطار در حال حرکت به‌سوی اولین ایستگاه است... 🚂';hud();travel(ask)}
+const MW=460,MH=424,OW=new Int8Array(MW*MH).fill(-1),bt=[],cx=Array(31).fill(0),cy=Array(31).fill(0),cn=Array(31).fill(1),pal=[[0, 46, 115], [208, 134, 0], [170, 255, 92], [0, 199, 255], [255, 104, 0], [0, 185, 95], [0, 255, 50], [14, 208, 0], [255, 186, 0], [166, 0, 255], [255, 208, 0], [0, 153, 255], [255, 46, 137], [255, 131, 46], [208, 0, 183], [255, 185, 226], [193, 40, 56], [255, 213, 139], [2, 231, 0], [189, 0, 255], [255, 139, 200], [151, 0, 231], [185, 0, 130], [0, 40, 208], [185, 108, 0], [0, 185, 25], [255, 219, 0], [255, 219, 0], [231, 0, 176], [208, 170, 0], [0, 87, 255]],SL=[['دریای خزر', 178, 38, 20], ['خلیج فارس', 226, 384, 16], ['دریای عمان', 337, 411, 12]];
+(()=>{let p=0;'_11l11_67j9_29F95_249l11_66j11_28F94_250l11_64j14_26F94_251l12_61j17_25F93_251l13_59j20_24F92_252l14_57k1j21_24F90_247l2_4l15_55k3j21_25F87_245l25_53k6j18_26F88_245l25_49k9j15_26F1_2F89_1F5_3F1_234l26_46k11j14_26F93_1F9_235l25_46k11j13_27F103_235l25_45k12j13_27F103_235l29_41k13j13_26F104_236l28_36k17j14_18F3_4F105_235l29_34k18j16_16F3_4F105_235l29_33k19j17_15F5_1F107_234l30_31k20j17_15F5_1F108_233l30_30k21j17_15F3_3F111_229l30k3_27k22j16_16F3_2F113_229l27k10_21k23j11_21F119_228l27k15_8k4_3k24j10_21F121_228l26k19_2k34j8_22F120_230l24k56j9_19F122_230l24k53j13_19F120_231l24k53j14_18F120_231l24k53j17_15F120_231l24k54j16_15F119_232l25k54j15_15F119_233l24k52j19_13F118_234l25k51j22_10F118_234l25k51j23_9F118_234l24k51j24_9F118_234l22k53j25_9F117_234l19k54j28_5f2F118_234l19k53j30_2f5F118_233l2_1l16k52j32f6F118_237l16k53j30f5F119_236l17I4k50j30f4F119_235l15I9k50j6k3j19f5F118_235l15I10k58j19f5F118_235l14I12k57j19f5F118_235l14I13k56j19f5F117_235l16I12k56j19f5F117_234l20I9k56j19f5F117_234l19I10k57j17f7F116_233l19I11k58j16f7F116_35h11_8h1_8E5_164l19I11k59j15f8F116_33h29E8_162l19I11k59j14f9F116_31h30E16_155l19I10k61j13f9F116_30h30E18_154l2_1l16I10k64j11f9F115_29h31E19_157l16I9k65j10f9F115_27h32E23_155l18I6k65j11f8F115_26h32E26_156l16I6k1I4k58j12f8F115_25h32E30_154l15I12k56j13f9F114_24h33E33_151l15I13k54j14f10F113_23h34E34_20D2_127l15I15k53j13f12F113_22h34E38_16D3_3D3_120l16I13k55j13f12F112_22h33E42_7D19_117l15I12k56j14f12F111_22h32E45_4D21_115l16I13k55j14f14F109_22h31E46_3D23_114l16I14k55j14f16F107_21h30E49D29_109l17I14k53j16f19F103_19h32E50D28_109l17I14k53j16f28F94_15h1_2h32E51D28_111l15I15k51j18f28F93_12h38E52D27_112l14I15k51j19f27F93_11h39E52D27_114l12I14k51m3j17f28F92h4_4h42E53D26_115l11I13k51m8j13f29F91h45i4E54D27_114l11I12k50m12j11f29F91h44i5E55D27_112l13I8l3k48m16j9f29F92h42i6E55D28_111l14I7l7k43m17j10f28F92h42i8E52D31_109l15I6l9k41m18j8f29F92h42i8E51D32_109l16I4l11k40m24j2f29F93h39i10E50D38_104l31k14l2k23m27f29F93h39i10E50D40_103l30k7l1k4l6k19m30f27F94h39i10E51D40_104l28k6l12k18m32f26F94h39i9E54D41_101l29k4l13k17m34f25F12g1F81h39i9E54D42_100l48k14m37f22d3F6g7F79h38i10E54D42_100l48k14m37f21d7g11F78h37i11E4i2E46D45_99l47k14m39f19d8g13F62g6F8h37i11E2i4E45D47_97l48k4l8k1m40d1f15d12g14F55g16h38i20E14D5E23D50_95l50k2l10m39d3f12d14g16F49g20h37i21E12D11E19D50_98l59m38d5f8d17g17F45g23h29i30E9D18E14D51_99l58m36d10f1d20g21F36g28h26i34E6D22E12D52_98l58m36d32g24F27g33h25i35E5D24E11D52_99l58m35d32g28F19g38h23i37E4D3i1D22E9D53_97l59n1m33d35g32F9g45h19i46D25E7D72_77l58n3m32d37g33F2g51h13i51D25E6D73_76l57n5m31d39g84h12i53D103_76l57n6m31d39g83h10i55D102_77l23n6l27n8m31d40g81i65D102_78l22n6l8n5l14n9m34d37g77i68D102_79l1_2l18n20l12n11m35d36g75i68D103_83l17n21l11n13m34d35g74i68D104_83l17n25l6n14m34d28b3d4g74i67D105_83l17n25l5n16m34d25b10g73i67D105_83l11n33l1n18m34d25b12g71i68D105_83l9n53m34d25b14g68i70D104_83l9n53m34d26b14g66i71D104_83l9n54m33d28b15g62i72D105_82l7n56m32d31b20a1g53i73D105_83l5n58m31d31b20a2g51i73D105_83l6n55m33d31b21a4g42i80D104_84l6n55m31d30b23a7g38i81D105_85l1_4n54m24d1m5d31b24a8g37i81D105_92n54m21d3m3d31b24a10g35i82D106_91n55m19d38b24a11g15a4g14i83D107_91n54m18d38b20a16g14a8g8i86D107_92n4_5n47m14d38b20a18g12a13g2i89D106_102n1_3n43m13d37b20a21g9a17i90D104_106n44m12d36b21a23g5a19i91D103_104n45o2m11o4d32b20a47i93D102_101n47o5m9o5d31b19a47i95D101_98n49o9m7o6d28b8a58i97D100_98n44o19m1o9d25b6a60i99D100_97n43o30d26b4a59i101D100_97n44o29d28b2a58i102D100_97n44o30d13e8d5e10a30i3a16i104D100_97n45o33d8e27a27i4a14i105D99_98n45o35d5e32a24i6a10i105D100_99n45o35e36a24i7a8i107D98_101n45o33e37a24i9a5i108D98_102n45o31e38a23i123D98_102n46o30e38a23i123D98_102n47o29e38a23i121D98_105n1p3n43o30e35a24i117D102_105p5n42o30e35a24i116D103_105p6n41o30e35a3c6a16i114D11C7D86_105p7n21p7n12o30e32c16a13i110D11C11D85_103p9n21p10n9o30e31c19a12i107D11C16D82_99p13n20p11n8o30e31c21a11i106D10C19D81_98p14n20p11n2o36e30c25a8i106D9C21D80_98p15n15p17o36e30c27a6i105D10C22D79_98p16n12p18o35e32c29a4i104D10C23D78_99p19n9p17o33e36c29a2i104D10C23D79_96p22n9p17o32e37c30i105D9C22D81_96p23n9p16o31e32c36i104D9C22D82_94p31n2p17o31e25c1e6c35i104C1D7C24D81_95p50o31e25c4e2c36i103C32D81_95p52o30e24c43i102C34D79_97p51o30e24c43i102C35D78_98p53o27e24c42i102C36D78_98p55o25e23c43i102C37D76_99p55o23e25c43i101C39D74_95p60o23e26c41i101C40D71_98p60o22e27c38z5i99C41D70_98p60o22e28c33z10i97C42D70_97p60o23e32c19z24i1z9i83C46D67_96p59o24e32c18z37i80C49D5C3D58_95p51r4p3o25e32c16z41i78C51D1C5D59_96p47r10o25e32c15z43i47z18C69D58_97p46r12o23e32c15z108C70D52_102p46r14o21e33c14z108C70D51_103p45r16o7r6o8e32c4e6c4z108C72D15C8D25_103p45r19o3r9o7e43c2z109C73D2C21D23_104p45r32o7e43z110C97D21_105p45r32o7e43z110C97D21_104p14q2p30r33o6e44z109C107D11_103p15q3p30r33o4e46z108C108D5C5_103p11q13p24r35e48z108C108D4C6_102p12q13p21q2p1q1r34e48z108C109D2C7_103p12q14p19q4r34e48z108C119_103p11q15p18q4r34e48z108C119_104p10q16p9q1p7q4r34e48z108C119_105p7q19p7q5p3q5r33e49z108C119_105p7q38r33e50z108C119_106p5q38r35e48z109C119_106p3q39r41e5r5e26z3e3z110C118_108q35r47e4r7e24z117C118_109q32r50e3r7e18z123C119_109q31r60e15z126C119_109q1_2q24r2q2r61e12z128C120_112q23r66e9z129C128_104q25r67e5z130C130_103q26r66e5z126A4C128_108q25r64e4z126A6C127_109q24r64e3r2z124A8C126_109q24r69z123A9C125_111q26r66z121A12C123_112q27r64z121A14C121_114q27r62z117A19C120_116q29r57z118A21C118_117q30r57z107A31C118_116q33r56z105A33C116_115q35r57z104A33C116_115q37r54z104A35C115_117q36r47z110A35C115_116q40r44z109A37C114_116q42r17s1r24z106A40C114_117q2_2q38r6s13r22z102A45C114_123q36r4s20r16z102A48C111_125q35r2s25r13z100A53C107_126q36s30r8z100A55C105_128q34s31r5t2z92A64C105_129q33s31r2t6z22t2z58A73C104_130q32s31t10z16t6z56A76C103_131q31s31t11z3t2z7t10z54A77C104_131q28s34t16z5t11z52A80C103_132q27s35t16z4t12z50A82C102_133q25s37t31z50A82C103_133q24s39t30z50A82C102_134q23s40t28z51A83C101_135q23s40t27z51A84C100_142q17s40t26z51A85C100_142q16s41t26z50A85C100_142q16s42t28z47A86C99_142q16s43t28z46A87C99_142q15s43t28z46A87C99_143q14s43t30z44A87C99_144q13s43t31z43A87C99_144q13s43t32z41A88C99_143q14s44t32z40A88C99_144q13s45t31z40A88y8C91_146q10s47t30z40A87y12C88_146q10s48t30z39A87y15C84_148q9s49t29z39A87y18C81_149q8s50t28z39A87y21C78_150q1_6s51t27z39A87y24C75_157s53t23z42A86y26C73_157s52t24z43A84y29C71_158s51t23z45A81y35C67_158s51t24z44A79y39C65_158s52t23z45A71y3A2y43C63_158s53t21z19v5z22A70y50C63_156s55t20z18v7z20A71y52C60_155s57t20z17v9z18A71y54C59_154s58t20z16v16z7A76y55C58_152s59t21z16v22A76y57C58_150s59t22z15v24A75y58C57_150s59t22z15v25A72y61C56_149s60t22z15v26A70y63C56_147s61t4u5t13z15v26A68y66C55B8_139s61u9t13z15v26A66y69C53B15_133s61u10t13z14v24A66y72C51B22_127s59u16t9z15v22A63y77C50B23_126s58u18t8z15v21A62y80C47B25_126s52u24t5u3z14v23A58y84C42B29_126s52u25t3u4z14v24A54y88C38B32_126s54u30z14v25A41y8A1y92C34B36_125s54u30z13v27A38y106C31B36_125s54u30z13v28A37y107C30B36_125s54u31z12v30A35y107C30B37_124s53u32z11v33A33y108C29B37_124s52u34z10v34A32y108C29B37_132s44u35z9v36A31y108C28B37_132s44u36z7v39A29y109C24B39_133s45u5s1u30z6v40A28y110C18B44_133s46u3s3u31z4v41A27y110C18B44_133s47u1s4u32z3v44A24y111C17B44_133s52u33z2v51A17y112C16B43_134s53u33v53A16y113C15B42_135s55u32v53A15y113C13B44_135s55u32v53A15y114C10B45_136s57u16v2u12v53A13y117C6B47_137s57u16v3u11v53A12y119C3B48_138s57u16v3u11v53A11y121B49_139s55u19v4u9v53A10y122B48_140s55u19v8u5v53A11y120B49_140s55u19v10u2v54A11y120B48_144s54u18v65A12y119B47_146s54u17v65A13y118B46_147s16G3s35u17v65A14y117B45_148s16G4s34u17v64A16y116B45_151s13G4s34u16v65A16y116B44_153s13G5s25w2s5u15v67A15y116B43_155s13G5s1G1s21w4s4u13v69A15y116B42_156s13G7s16G4s1w5s3u11v72A14y116B41_157s13G13s8G7w8u10v75A12y116B40_158s13G13s7G8w8u10v75A12y116B40_159s12G14s4G10w8u10v76A11y116B39_160s12G14s3G11w9u9v76A11y116B38_153G3_5s5G35w9u9v76A11y116B37_151G1_1G2_1G3_4s4G35w10u8v76A11y116B37_151G4_2G4_2G40w9u3v82A11y115B36_152G5_2G45w10u1v83A11y115B35_153G4_3G47w10v83A10y115B34_155G2_5G47w9v84A9y115B34_155G1_7G46w9v84A9y115B35_162G47w17v76A2v9y112B36_161G47w20v87y109B37_160G48w20v87y108B37_159G50w19v88y107B38_150G1_6G52w19v88y107B38_148G4_2G55w18v88y107B39_146G63w17v89y106B40_144G65w18v88y105B40_143G67w19v87y104B41_141G69w20v86y103B42_139G70w21v85y103B43_140G3_2G63w22v85y102B44_140G1_5G61w22v86y102B43_146G61w23v86y101B43_146G61w24v86y100B43_146G61w25v85y101B43_145G60w26v85y101B43_145G60w27v84y100B45_145G64w22v84y99B47_144G65w21v84y100B46_144G66w21v83y100B46_145G65w21v83y100B47_144G62w25v82y15x4y82B47_144G61w26v81y13x6y82B47_144G62w25v81y11x8y82B48_144G61w26v80x2y7x9y83B48_144G62w25v80x3y4x11y83B48_145G64w23v80x17y83B49_145G64w22v81x16y83B50_145G63w22v82x15y83B51_144G64w21v83x14y83B52_142G65w21v84x13y83B53_142G64w22v82x14y83B54_141G64w22v81x14y74B64_141G64w22v81x14y72B67_142G62w22v81x14y73B68_141G61w23v80x14y74B72_136G62w22v80x15y73B74_134G62w22v80x15y73B77_131G63w22v79x16y72B78_130G64w21v79x17y13x7y51B79_129G64w21v79x18y12x8y50B80_129G64w21v78x19y11x8y49B82_129G64w20v78x23y1x14y46B90_124G64w20v78x38y45B91_124G63w22v77x38y45B91_124G63w23v76x39y44B91_125G63w24v74x39y44B91_125G64w25v73x39y42B92_128G63w24v73x39y41B92_127G65w24v72x46y34B92_128G64w24v73x45y34B92_129G64w24v72x45y34B92_130G65w22v72x46y33B92_131G71w1G2w13v71x44y35B92_130G77w11v71x43y36B92_129G79w10v70x43y37B93_128G80w9v69x43y38B93_128G81w9v67x44y38B93_129G84w6v65x45y38B93_129G86w5v63x47y37B93_133G83w5v62x48y35B94_135G1_2G79w5v60x49y35B94_139G79w5v58x50y35B94_139G79w6v33x18v4x52y35B94_136G84w5v29x77y35B94_137G81w8v26x79y35B94_138G80w9v24x81y34B93_141G79w7x2v24x80y34B93_141G81w3x7v21x83y31B93_141G83x11v18x84y30B93_141G83x12v17x85y29B94_5B5_132G83x12v14x54G3x29y29B105_131G2_2G80x12v12x51G10H2x25y29B105_134G82x15v6x52G10H7x21y28B104_136G83x15v2x52G12H8x21y27B103_137G86x65G13H8x22y26B103_138G87x61G15H8x23y25B103_139G89x52G21H11x25y19B104_140G88x51G22H10x27y19B103_141G88x49G23H11x27y18B104_142G86x50G22H12x27y19B102_145G84x48G23H12x29y3x1y14B99_147G85x47G23H12x35y12B99_148G86x37G4x1G26H13x34y12B99_149G86x6G3x27G31H13x35y11B99_147G1_2G100x18G34H13x35y11B99_147G104x16G35H13x37y10B98_147G104x15G36H13x38y9B87_158G109x9G37H13x40y3B88_161G109x7G39H13x43B84_166G109x5G40H13x43B81_169G154H13x43B81_171G152H13x43B81_173G150H13x44B79_174G150H14x43B76_1B2_174G146_2G2H14x44B74_179G144_3G2H14x44B73_179G145_2G3H14x44B70_182G142_1G2_3G2H15x44B67_184G141_5G1_1G2H16x43B67_179G2_2G142_5G4H16x44B65_180G2_2G24_4G113_6G4H16x44B65_180G3_1G23_5G113_8G2H15x46B64_180G25_7G112_8G3H16x44B65_181G24_8G111_9G2H16x43B66_183G21_9G111_8G3H17x43B65_183G21_12G107_10G2H17x44B64_183G20_14G106_9G3H18x44B63_183G20_15G105_9G3H18x45B61_184G20_15G104_9G4H19x44B61_185G18_16G103_10G4H19x45B60_186G17_16G102_10G5H22x42B58_188G17_15G102_10G6H30x34B58_189G15_16G101_11G6H30x3H1x30B58_189G15_16G99_13G6H30x1H4x29B58_189G14_17G98_14G6H35x29B57_190G14_16G98_17G4H36x7H7x14B57_191G13_16G98_17G4H39x1H15x9B57_192G10_1G1_15G96_21G3H57x7B57_194G8_18G95_20G4H58x6B4H2B51_195G7_18G94_21G4H58x6B2H6B22H2B25_196G6_18G94_21G4H59x4H10B4H2B13H5B24_196G6_18G92_23G4H80B1H4B2H3B2H5B24_196G6_18G91_25G3H86B1H3B2H5B24_197G5_18G90_26G3H97B24_197G5_20G88_26G3H100B21_23H3_171G5_21G86_26G4H104B16_21H11_3H5_158G5_21G85_27G4H109B9H5_9H5_2H23_156G5_21G85_27G4H111B7H7_7H30_156G6_20G84_28G4H112B6H6_8H30_156G6_20G83_29G4H124_3H35_157G6_18G83_30G4H124_2H36_158G4_19G83_31G3H162_159G3_19G81_33G3H162_159G4_18G80_34G3H162_160G3_17G79_36G3H162_160G3_16G79_38G2H162_161G3_15G77_40G2H162_161G3_14G78_40G2H162_161G2_15G76_43G1H162_161G1_16G75_44G1H162_177G77_43G1H162_177G77_44H162_176G77_45H162_178G75_46H161_177G75_47H161_177G75_48H160'.replace(/([a-zA-Z_])(\d+)/g,(m,c,n)=>{const v=c==='_'?-1:(c>='a'?c.charCodeAt(0)-97:c.charCodeAt(0)-39);OW.fill(v,p,p+ +n);p+=+n;return ''});
+[[177, 115], [163, 103], [168, 135], [140, 92], [134, 151], [130, 70], [212, 93], [269, 59], [266, 115], [102, 40], [64, 50], [18, 19], [104, 83], [72, 111], [111, 125], [68, 148], [62, 178], [99, 169], [120, 221], [160, 214], [160, 244], [231, 308], [179, 307], [330, 372], [314, 261], [192, 175], [259, 207], [396, 342], [356, 189], [363, 112], [304, 62]].forEach((a,k)=>{cx[k]=a[0];cy[k]=a[1]})})();
+function draw(h){const c=$('#map'),g=c.getContext('2d'),im=g.createImageData(MW,MH),d=im.data,L=MW*MH;
+for(let p=0;p<L;p++){const w=OW[p];if(w<0)continue;if(w>30){d[p*4]=125;d[p*4+1]=200;d[p*4+2]=250;d[p*4+3]=255;continue}const r=p+1<L?OW[p+1]:-1,u=p+MW<L?OW[p+MW]:-1;
+const c3=(r<0||u<0)?[90,74,138]:(r!==w||u!==w)?[255,255,255]:w===h?[255,255,255]:bt[w]?pal[w]:[176,172,205];
+d[p*4]=c3[0];d[p*4+1]=c3[1];d[p*4+2]=c3[2];d[p*4+3]=255}
+g.putImageData(im,0,0);g.font='24px serif';g.textAlign='center';g.textBaseline='middle';
+for(let k=0;k<31;k++)if(cn[k]&&(bt[k]||k===h))g.fillText(k===h?'❓':D[k][2],cx[k]/cn[k],cy[k]/cn[k]);g.font='bold 20px Vazirmatn,Tahoma';g.fillStyle='#0b4a8f';SL.forEach(s=>{g.font='bold '+(s[3]||20)+'px Vazirmatn,Tahoma';g.lineWidth=3;g.strokeStyle='#fff';g.lineJoin='round';g.strokeText(s[0],s[1],s[2]);g.fillText(s[0],s[1],s[2])})}
+function ask(){locked=false;wrong=false;hud();draw(i%2?-1:i);const d=D[i],y=i%2,ans=y?d[0]:d[1];
+const pool=sh(D.map(x=>y?x[0]:x[1]).filter(x=>x!==ans)).slice(0,3);
+$('#qt').textContent=(P.length>1?cur().n+'، ':'')+(y?'شهر «'+d[1]+'» مرکز کدام استان است؟':'مرکز استان «'+d[0]+'» کدام شهر است؟');$('#hint').textContent='';
+const o=$('#opts');o.className='opts';o.innerHTML='';sh([ans,...pool]).forEach(v=>{const b=document.createElement('button');b.className='btn opt';b.textContent=v;b.onclick=()=>pick(b,v,ans);o.append(b)})}
+function pick(b,v,ans){if(locked||b.disabled)return;
+if(v===ans){locked=true;b.classList.add('ok');cur().c+=wrong?5:10;ding();bt[i]=1;draw(-1);
+$('#hint').textContent='🎉 آفرین! '+D[i][3];t++;hud();
+setTimeout(()=>E.includes(i)?review():next(),2400)}
+else{wrong=true;b.disabled=true;b.classList.add('no');buzz();$('#hint').textContent='🔎 سرنخ: جواب با حرف «'+ans[0]+'» شروع می‌شود. دوباره امتحان کن!'}}
+function reviewOld(){const k=rg(i),s=k?E[k-1]+1:0,ix=[];for(let j=s;j<=E[k];j++)ix.push(j);let sel=null,done=0;
+$('#qt').textContent='🧩 پازل مرور منطقه‌ی «'+R[k]+'»: هر استان را به مرکزش وصل کن! (اول یک استان، بعد یک شهر)';$('#hint').textContent='';
+const mk=(side,j,txt)=>{const b=document.createElement('button');b.className='btn opt';b.textContent=txt;b.onclick=()=>{if(b.disabled)return;
+if(!sel||sel.side===side){if(sel)sel.b.classList.remove('sl');sel={b,side,j};b.classList.add('sl');return}
+sel.b.classList.remove('sl');if(sel.j===j){[sel.b,b].forEach(x=>{x.classList.add('ok');x.disabled=true});cur().c+=5;t++;ding();hud();
+if(++done==ix.length)setTimeout(()=>{stamps++;hud();fan();pop('🛂','مهر منطقه‌ی «'+R[k]+'» در پاسپورتت خورد!',next)},900)}
+else{buzz();b.classList.add('no');setTimeout(()=>b.classList.remove('no'),400)}sel=null};return b};
+const A=ix.map(j=>mk(0,j,D[j][0])),B=sh(ix).map(j=>mk(1,j,D[j][1])),o=$('#opts');o.innerHTML='';A.forEach((a,r)=>o.append(a,B[r]))}
+function review(){const k=rg(i),s=k?E[k-1]+1:0,ix=[];for(let j=s;j<=E[k];j++)ix.push(j);let sel=null,done=0,dr=0;
+$('#qt').textContent='🧩 پازل مرور منطقه‌ی «'+R[k]+'»: هر استان را بکش و روی مرکزش رها کن (یا اول استان و بعد شهر را لمس کن)';$('#hint').textContent='';
+const att=(x,y)=>{[x,y].forEach(z=>z.b.classList.remove('sl'));sel=null;
+if(x.j===y.j){[x,y].forEach(z=>{z.b.classList.add('ok');z.b.disabled=true});cur().c+=5;t++;ding();hud();
+if(++done==ix.length)setTimeout(()=>{stamps++;hud();fan();pop('🛂','مهر منطقه‌ی «'+R[k]+'» در پاسپورتت خورد!',next)},900)}
+else{buzz();y.b.classList.add('no');setTimeout(()=>y.b.classList.remove('no'),400)}};
+const mk=(side,j,txt)=>{const b=document.createElement('button'),me={b,side,j};b.className='btn opt';b.textContent=txt;b.me=me;
+b.onclick=()=>{if(b.disabled||dr)return;if(!sel||sel.side===side){if(sel)sel.b.classList.remove('sl');sel=me;b.classList.add('sl')}else att(sel,me)};
+b.onpointerdown=e=>{if(b.disabled)return;const x0=e.clientX,y0=e.clientY;let g=null;
+const mv=v=>{if(!g&&Math.hypot(v.clientX-x0,v.clientY-y0)>8){g=b.cloneNode(true);g.style.cssText='position:fixed;z-index:20;pointer-events:none;margin:0;width:'+b.offsetWidth+'px';document.body.append(g);dr=1}
+if(g){g.style.left=v.clientX-g.offsetWidth/2+'px';g.style.top=v.clientY-g.offsetHeight/2+'px'}};
+const up=v=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);removeEventListener('pointercancel',up);
+if(g){g.remove();const o=document.elementFromPoint(v.clientX,v.clientY),q=o&&o.closest('.opt');if(q&&q.me&&!q.disabled&&q.me.side!==side){if(sel)sel.b.classList.remove('sl');att(me,q.me)}setTimeout(()=>dr=0,50)}};
+addEventListener('pointermove',mv);addEventListener('pointerup',up);addEventListener('pointercancel',up)};return b};
+const A=ix.map(j=>mk(0,j,D[j][0])),B=sh(ix).map(j=>mk(1,j,D[j][1])),o=$('#opts');o.className='opts rv';o.innerHTML='';A.forEach((a,r)=>o.append(a,B[r]))}
+function next(){i++;if(i>=N)finish();else travel(ask)}
+function pop(e,m,cb){$('#pe').textContent=e;$('#pm').textContent=m;$('#pop').classList.add('on');$('#pb').onclick=()=>{$('#pop').classList.remove('on');cb()}}
+function finish(){hud();fan();setTimeout(fan,900);const w=[...P].sort((a,b)=>b.c-a.c),m=P.length>1;
+$('#qc').innerHTML='<div class="cert"><div class="big">🏆</div><h2>گواهی مسافر ایران‌گرد</h2>'+P.map(p=>'<p><b class="pn"></b> 🪙 '+fa(p.c)+'</p>').join('')+(m?'<p>🥇 '+(w[0].c==w[1].c?'مساوی شدید؛ هر دو قهرمانید!':'برنده: <b class="pn"></b>')+'</p>':'')+'<p>هر ۳۱ مرکز استان را شناختید و نقشه‌ی ایران کوچک را کامل کردید! 🎉</p><div class="wish">هر شهری که یاد گرفتید، یک ستاره در آسمان دانایی‌تان است. ایران را با دانستن دوست بدارید و با مهربانی آبادش کنید! 🌟🇮🇷</div><button class="btn" onclick="location.reload()">سفر دوباره 🚂</button>'+CR+'</div>';
+const ns=[...document.querySelectorAll('.pn')];P.forEach((p,k)=>ns[k].textContent=p.n);if(ns[P.length])ns[P.length].textContent=w[0].n}
+$('#go').onclick=start;$('#m1').onclick=()=>setm(1);$('#m2').onclick=()=>setm(2);
+$('#mu').onclick=()=>{on=!on;$('#mu').textContent=on?'🔊':'🔇';if(master)master.gain.value=on?.5:0};
+</script></body></html>
